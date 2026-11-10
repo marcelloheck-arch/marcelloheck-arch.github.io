@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcelo Heck · Agentes de IA e automação para atendimento</title>
+<meta name="description" content="Agentes de IA no WhatsApp, lembretes automáticos, painéis e automações para clínicas e empresas. Case real: Clínica Cardiocenter, 2.601 pacientes atendidos pelo agente.">
+<meta property="og:title" content="Marcelo Heck · Agentes de IA e automação para atendimento">
+<meta property="og:description" content="Agente no WhatsApp que atende 24h, lembretes que reduzem faltas e painéis para a equipe. Veja o case da Clínica Cardiocenter.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://marcelloheck-arch.github.io/img/dashboard.jpg">
+<meta property="og:url" content="https://marcelloheck-arch.github.io/">
+<link rel="canonical" href="https://marcelloheck-arch.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --tinta: #0E1B2B;
+  --tinta-2: #1C2B3D;
+  --texto: #1E2A36;
+  --suave: #5C6B78;
+  --fundo: #F6F7F4;
+  --branco: #FFFFFF;
+  --borda: #E3E7E2;
+  --verde: #129B6A;
+  --verde-escuro: #0C7A53;
+  --verde-claro: #E3F5EC;
+  --azul: #1769AA;
+  --raio: 16px;
+  --sombra: 0 1px 2px rgba(14,27,43,.05), 0 8px 24px rgba(14,27,43,.06);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.num { font-variant-numeric: tabular-nums; }
+svg.ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* NAV */
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(246,247,244,.88); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.nav.rolou { border-bottom-color: var(--borda); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; letter-spacing: -.2px; text-decoration: none; }
+.logo b { width: 34px; height: 34px; border-radius: 10px; background: var(--tinta); color: #fff; display: grid; place-items: center; font-size: 13px; letter-spacing: .5px; }
+.nav-links { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; color: var(--suave); }
+.nav-links a:hover { color: var(--texto); }
+.nav-links a.btn-verde, .nav-links a.btn-verde:hover { color: #fff; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 14.5px; border-radius: 12px; padding: 12px 20px; transition: transform .15s, background .15s, box-shadow .15s; border: 0; cursor: pointer; }
+.btn:hover { transform: translateY(-1px); }
+.btn-verde { background: var(--verde); color: #fff; box-shadow: 0 6px 18px rgba(18,155,106,.28); }
+.btn-verde:hover { background: var(--verde-escuro); }
+.btn-linha { background: var(--branco); color: var(--texto); border: 1px solid var(--borda); }
+.nav .btn { padding: 9px 16px; font-size: 13.5px; }
+
+/* HERO */
+.hero { padding: 64px 0 40px; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+.selo { display: inline-flex; align-items: center; gap: 8px; background: var(--verde-claro); color: var(--verde-escuro); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 99px; margin-bottom: 18px; }
+.selo i { width: 7px; height: 7px; border-radius: 50%; background: var(--verde); }
+h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.08; letter-spacing: -1.4px; font-weight: 800; color: var(--tinta); }
+h1 em { font-style: normal; color: var(--verde); }
+.hero p.lead { font-size: 18px; color: var(--suave); margin: 20px 0 28px; max-width: 540px; }
+.hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-nota { font-size: 13px; color: var(--suave); margin-top: 18px; }
+
+/* conversa demonstrativa */
+.celular { background: var(--tinta); border-radius: 30px; padding: 12px; box-shadow: 0 30px 60px rgba(14,27,43,.25); max-width: 360px; margin-left: auto; width: 100%; }
+.tela { background: #ECE5DD; border-radius: 20px; overflow: hidden; }
+.tela-topo { background: #075E54; color: #fff; display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
+.tela-topo .av { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #D9524F; display: grid; place-items: center; }
+.tela-topo strong { font-size: 14px; display: block; line-height: 1.2; }
+.tela-topo span { font-size: 11.5px; opacity: .8; }
+.msgs { padding: 14px 12px 16px; display: flex; flex-direction: column; gap: 7px; min-height: 380px; }
+.m { max-width: 82%; padding: 7px 10px 6px; border-radius: 10px; font-size: 13px; line-height: 1.45; box-shadow: 0 1px 1px rgba(0,0,0,.08); white-space: pre-line; opacity: 0; transform: translateY(6px); animation: entra .4s forwards; }
+.m small { display: block; text-align: right; font-size: 10px; color: #8696A0; margin-top: 2px; }
+.m.p { align-self: flex-end; background: #D9FDD3; }
+.m.a { align-self: flex-start; background: #fff; }
+@keyframes entra { to { opacity: 1; transform: none; } }
+
+/* SEÇÕES */
+section { padding: 72px 0; }
+.rotulo { font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--verde); margin-bottom: 10px; }
+h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -.8px; font-weight: 800; color: var(--tinta); max-width: 720px; }
+.sub { color: var(--suave); font-size: 16.5px; margin-top: 12px; max-width: 680px; }
+
+/* NÚMEROS */
+.numeros { background: var(--tinta); color: #fff; padding: 56px 0; }
+.numeros .wrap > p { color: rgba(255,255,255,.65); font-size: 14px; margin-bottom: 26px; }
+.numeros .wrap > p strong { color: #fff; }
+.grade-num { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.n { border: 1px solid rgba(255,255,255,.12); border-radius: var(--raio); padding: 22px; background: rgba(255,255,255,.03); }
+.n b { display: block; font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #fff; }
+.n b span { color: #5FD3A2; }
+.n p { font-size: 14px; color: rgba(255,255,255,.72); margin-top: 10px; }
+
+/* CASE */
+.case { display: grid; grid-template-columns: .95fr 1.05fr; gap: 40px; margin-top: 36px; align-items: start; }
+.case-lista { display: flex; flex-direction: column; gap: 14px; }
+.peca { background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 18px 20px; display: flex; gap: 14px; box-shadow: var(--sombra); }
+.peca .ico { width: 40px; height: 40px; border-radius: 11px; background: var(--verde-claro); color: var(--verde-escuro); display: grid; place-items: center; flex-shrink: 0; }
+.peca h3 { font-size: 15.5px; font-weight: 700; color: var(--tinta); }
+.peca p { font-size: 14px; color: var(--suave); margin-top: 3px; }
+.print { background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 10px; box-shadow: var(--sombra); }
+.print img { border-radius: 10px; border: 1px solid var(--borda); }
+.print figcaption { font-size: 12.5px; color: var(--suave); padding: 10px 6px 4px; }
+.depo { margin-top: 18px; background: var(--branco); border: 1px solid var(--borda); border-left: 4px solid var(--verde); border-radius: var(--raio); padding: 22px 24px; box-shadow: var(--sombra); }
+.depo blockquote { font-size: 15.5px; color: var(--texto); line-height: 1.65; }
+.depo cite { display: block; font-style: normal; font-size: 13.5px; color: var(--suave); margin-top: 12px; }
+.depo cite strong { color: var(--tinta); }
+
+/* DEMOS */
+.demos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 32px; }
+.demo { background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 24px; box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 10px; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.demo:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(14,27,43,.06), 0 14px 32px rgba(14,27,43,.10); }
+.demo .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--tinta); color: #fff; display: grid; place-items: center; }
+.demo h3 { font-size: 18px; font-weight: 700; color: var(--tinta); }
+.demo p { font-size: 14.5px; color: var(--suave); flex: 1; }
+.demo span { font-size: 14px; font-weight: 700; color: var(--verde); display: inline-flex; align-items: center; gap: 6px; }
+
+/* SERVIÇOS */
+.servicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+.serv { background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 22px; }
+.serv .ico { color: var(--verde); margin-bottom: 12px; }
+.serv h3 { font-size: 16px; font-weight: 700; color: var(--tinta); }
+.serv p { font-size: 14px; color: var(--suave); margin-top: 6px; }
+
+/* PROCESSO */
+.passos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; counter-reset: p; }
+.passo { position: relative; padding-top: 18px; border-top: 2px solid var(--borda); }
+.passo::before { counter-increment: p; content: counter(p, decimal-leading-zero); font-size: 13px; font-weight: 800; color: var(--verde); }
+.passo h3 { font-size: 16px; font-weight: 700; color: var(--tinta); margin-top: 6px; }
+.passo p { font-size: 14px; color: var(--suave); margin-top: 4px; }
+
+/* STACK */
+.stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.stack span { background: var(--branco); border: 1px solid var(--borda); border-radius: 99px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; color: var(--tinta-2); }
+
+/* CONTATO */
+.contato { background: var(--tinta); color: #fff; border-radius: 24px; padding: 48px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; }
+.contato h2 { color: #fff; }
+.contato .sub { color: rgba(255,255,255,.7); }
+.contato-acoes { display: flex; flex-direction: column; gap: 12px; }
+.contato .btn-linha { background: transparent; color: #fff; border-color: rgba(255,255,255,.25); justify-content: center; }
+.contato .btn-verde { justify-content: center; }
+footer { padding: 32px 0 40px; font-size: 13px; color: var(--suave); }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+/* RESPONSIVO */
+@media (max-width: 960px) {
+  .hero .wrap, .case, .contato { grid-template-columns: 1fr; }
+  .celular { margin: 8px auto 0; }
+  .grade-num { grid-template-columns: repeat(2, 1fr); }
+  .servicos { grid-template-columns: 1fr 1fr; }
+  .passos { grid-template-columns: 1fr 1fr; }
+  .nav-links a:not(.btn) { display: none; }
+}
+@media (max-width: 620px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 36px 0 24px; }
+  section { padding: 52px 0; }
+  .demos, .servicos, .passos { grid-template-columns: 1fr; }
+  .n b { font-size: 30px; }
+  .contato { padding: 30px 22px; border-radius: 18px; }
+  .hero-acoes .btn { flex: 1; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .m { animation: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-whats" viewBox="0 0 24 24"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19.1L4 20z"/><path d="M9.2 8.8c.2 2.6 2.5 5 5.4 5.6l1.2-1.2-1.8-.9-.7.7c-1-.4-1.9-1.3-2.3-2.3l.7-.7-.9-1.8-1.6.6z"/></symbol>
+  <symbol id="i-robo" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/></symbol>
+  <symbol id="i-sino" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-painel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></symbol>
+  <symbol id="i-grafico" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-clipe" viewBox="0 0 24 24"><path d="M20 11.5l-7.8 7.8a5 5 0 0 1-7-7l8.2-8.2a3.3 3.3 0 0 1 4.7 4.7l-8.2 8.2a1.7 1.7 0 0 1-2.4-2.4l7.4-7.4"/></symbol>
+  <symbol id="i-engrenagem" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.2 6.2l2.1 2.1M17.7 15.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 17.8l2.1-2.1M17.7 8.3l2.1-2.1"/></symbol>
+  <symbol id="i-site" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6l8.5 7 8.5-7"/></symbol>
+  <symbol id="i-coracao" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo"><b>MH</b>Marcelo Heck</a>
+    <div class="nav-links">
+      <a href="#case">Case</a>
+      <a href="#demos">Demonstrações</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-verde" href="https://wa.me/5548999314665?text=Ol%C3%A1%20Marcelo%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg class="ic"><use href="#i-whats"/></svg>Conversar</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="topo">
+  <div class="wrap">
+    <div>
+      <span class="selo"><i></i>MH Soluções para Atendimento · Florianópolis, SC</span>
+      <h1>Atendimento no WhatsApp que <em>funciona sozinho</em>, 24 horas por dia.</h1>
+      <p class="lead">Sou o Marcelo Heck. Crio agentes de IA que atendem e pré-agendam pelo WhatsApp, lembretes automáticos que reduzem faltas e painéis para a equipe acompanhar tudo. Projetos reais, em produção, com números para mostrar.</p>
+      <div class="hero-acoes">
+        <a class="btn btn-verde" href="https://wa.me/5548999314665?text=Ol%C3%A1%20Marcelo%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg class="ic"><use href="#i-whats"/></svg>Falar pelo WhatsApp</a>
+        <a class="btn btn-linha" href="#case">Ver o case real <svg class="ic"><use href="#i-seta"/></svg></a>
+      </div>
+      <p class="hero-nota">Atendo clínicas, consultórios e empresas de serviços em todo o Brasil, de forma remota.</p>
+    </div>
+
+    <div class="celular" aria-label="Exemplo de conversa com o agente">
+      <div class="tela">
+        <div class="tela-topo">
+          <span class="av"><svg class="ic"><use href="#i-coracao"/></svg></span>
+          <div><strong>Clínica (exemplo)</strong><span>online</span></div>
+        </div>
+        <div class="msgs">
+          <div class="m p" style="animation-delay:.2s">Oi, boa noite! Queria marcar uma consulta<small>22:41</small></div>
+          <div class="m a" style="animation-delay:.9s">Olá! Aqui é da Clínica. Como podemos te ajudar? Responda com o número:
+1. Consulta
+2. Exame
+3. Reagendamento
+4. Cancelamento<small>22:41</small></div>
+          <div class="m p" style="animation-delay:1.6s">1<small>22:42</small></div>
+          <div class="m a" style="animation-delay:2.3s">Pode me informar seu nome completo?<small>22:42</small></div>
+          <div class="m p" style="animation-delay:3s">📎 exame_sangue.pdf<small>22:43</small></div>
+          <div class="m a" style="animation-delay:3.7s">Recebemos seu arquivo, obrigado! Nossa equipe vai analisar e retornar por aqui.<small>22:43</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="numeros">
+  <div class="wrap">
+    <p><strong>Case Clínica Cardiocenter</strong> (Florianópolis) · dados reais do banco, de 08/07 a 21/10/2026</p>
+    <div class="grade-num">
+      <div class="n"><b class="num">2.601</b><p>pacientes atendidos pelo agente no WhatsApp</p></div>
+      <div class="n"><b class="num">616</b><p>pacientes atendidos fora do horário da clínica</p></div>
+      <div class="n"><b class="num">72,8<span>%</span></b><p>dos pacientes responderam ao lembrete automático</p></div>
+      <div class="n"><b class="num">125</b><p>remarcações e cancelamentos avisados antes, em vez de falta</p></div>
+    </div>
+  </div>
+</div>
+
+<section id="case">
+  <div class="wrap">
+    <div class="rotulo">Case real</div>
+    <h2>Clínica Cardiocenter: da recepção sobrecarregada a um atendimento que não para.</h2>
+    <p class="sub">A clínica recebia centenas de mensagens por semana, inclusive à noite e no fim de semana, e perdia horários com pacientes que faltavam sem avisar. Construí e mantenho o sistema inteiro, que está em produção desde julho de 2026.</p>
+
+    <div class="case">
+      <div class="case-lista">
+        <div class="peca"><span class="ico"><svg class="ic"><use href="#i-robo"/></svg></span><div><h3>Agente de IA no WhatsApp</h3><p>Responde dúvidas, valores, preparo de exames e convênios, e faz o pré-agendamento completo: médico, convênio, exames e dia preferido. A recepção recebe tudo pronto.</p></div></div>
+        <div class="peca"><span class="ico"><svg class="ic"><use href="#i-sino"/></svg></span><div><h3>Lembretes de consulta pela API oficial</h3><p>A agenda do dia seguinte é lida sozinha. O paciente confirma, remarca ou cancela com um toque, e a resposta já aparece para a equipe.</p></div></div>
+        <div class="peca"><span class="ico"><svg class="ic"><use href="#i-painel"/></svg></span><div><h3>Painel da recepção</h3><p>Cards de agendamento, confirmações, conversa completa com o paciente e login individual para cada atendente.</p></div></div>
+        <div class="peca"><span class="ico"><svg class="ic"><use href="#i-clipe"/></svg></span><div><h3>Arquivos pelo WhatsApp</h3><p>PDFs, fotos e áudios que o paciente manda chegam ao painel com botões para abrir, imprimir e baixar.</p></div></div>
+      </div>
+      <div>
+        <figure class="print">
+          <img src="img/dashboard.jpg" alt="Dashboard de performance do agente com atendimentos, perguntas respondidas, tempo de resposta da recepção e fila de espera" loading="lazy">
+          <figcaption>Dashboard de performance criado para a clínica (dados ilustrativos, sem informações de pacientes).</figcaption>
+        </figure>
+        <div class="depo">
+          <blockquote>“Destacamos, principalmente, a disponibilidade, a atenção e o comprometimento do Marcelo em ouvir nossas necessidades e buscar soluções para que o sistema se adequasse cada vez mais à realidade e às demandas da nossa clínica. Recomendamos seus serviços com confiança e satisfação!”</blockquote>
+          <cite><strong>Clínica Cardiocenter</strong> · Florianópolis, SC · depoimento de outubro de 2026</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demos" style="padding-top:0">
+  <div class="wrap">
+    <div class="rotulo">Teste agora</div>
+    <h2>Demonstrações que você pode abrir no celular.</h2>
+    <p class="sub">Versões de demonstração para um negócio fictício. Converse com o agente e veja como ele se comporta.</p>
+    <div class="demos">
+      <a class="demo" href="https://marcelloheck-arch.github.io/SeuNegocio/" target="_blank" rel="noopener">
+        <span class="ico"><svg class="ic"><use href="#i-robo"/></svg></span>
+        <h3>Agente de atendimento por texto</h3>
+        <p>Atende, tira dúvidas e encaminha pedidos como faria no WhatsApp da sua empresa.</p>
+        <span>Abrir demonstração <svg class="ic"><use href="#i-seta"/></svg></span>
+      </a>
+      <a class="demo" href="https://marcelloheck-arch.github.io/AtendePorvoz/" target="_blank" rel="noopener">
+        <span class="ico"><svg class="ic"><use href="#i-mic"/></svg></span>
+        <h3>Agente que responde por voz</h3>
+        <p>Você fala ou digita, e o agente responde sempre em áudio. Ideal para quem prefere ouvir a ler.</p>
+        <span>Abrir demonstração <svg class="ic"><use href="#i-seta"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="servicos" style="background:var(--branco);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda)">
+  <div class="wrap">
+    <div class="rotulo">O que eu faço</div>
+    <h2>Soluções sob medida para atender melhor e trabalhar menos no manual.</h2>
+    <div class="servicos">
+      <div class="serv"><div class="ico"><svg class="ic"><use href="#i-robo"/></svg></div><h3>Agentes de IA no WhatsApp</h3><p>Atendimento 24h, pré-agendamento, triagem de pedidos e encaminhamento para a equipe na hora certa.</p></div>
+      <div class="serv"><div class="ico"><svg class="ic"><use href="#i-sino"/></svg></div><h3>Lembretes e confirmações</h3><p>Mensagens automáticas a partir da sua agenda, com confirmação, remarcação e cancelamento em um toque.</p></div>
+      <div class="serv"><div class="ico"><svg class="ic"><use href="#i-painel"/></svg></div><h3>Painéis para a equipe</h3><p>Uma tela única com pedidos, conversas e status, com login para cada pessoa da equipe.</p></div>
+      <div class="serv"><div class="ico"><svg class="ic"><use href="#i-grafico"/></svg></div><h3>Dashboards de resultado</h3><p>Atendimentos, horários de pico, tempo de resposta e fila de espera, atualizados em tempo real.</p></div>
+      <div class="serv"><div class="ico"><svg class="ic"><use href="#i-engrenagem"/></svg></div><h3>Automações e integrações</h3><p>Planilhas, Google Drive, PDFs, APIs e sistemas conversando entre si, sem copiar e colar.</p></div>
+      <div class="serv"><div class="ico"><svg class="ic"><use href="#i-site"/></svg></div><h3>Páginas e sites</h3><p>Páginas rápidas e responsivas para apresentar um serviço, captar contatos ou atender parceiros.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rotulo">Como trabalho</div>
+    <h2>Do primeiro contato ao sistema rodando, com acompanhamento de perto.</h2>
+    <div class="passos">
+      <div class="passo"><h3>Diagnóstico</h3><p>Entendo como seu atendimento funciona hoje e onde estão os gargalos.</p></div>
+      <div class="passo"><h3>Projeto</h3><p>Desenho o fluxo com você: o que o agente responde, o que vai para a equipe.</p></div>
+      <div class="passo"><h3>Testes e implantação</h3><p>Testo tudo num número separado antes de ligar no atendimento real.</p></div>
+      <div class="passo"><h3>Acompanhamento</h3><p>Ajusto o sistema conforme a rotina do seu negócio muda. Suporte contínuo.</p></div>
+    </div>
+    <div class="stack" aria-label="Tecnologias">
+      <span>n8n</span><span>WhatsApp API oficial (Meta)</span><span>Uazapi · Evolution API</span><span>OpenAI · Gemini</span><span>PostgreSQL</span><span>JavaScript</span><span>Python</span><span>Google Drive e Sheets</span><span>HTML e CSS</span><span>GitHub Pages</span>
+    </div>
+  </div>
+</section>
+
+<section id="contato" style="padding-top:8px">
+  <div class="wrap">
+    <div class="contato">
+      <div>
+        <h2>Vamos conversar sobre o seu atendimento?</h2>
+        <p class="sub">Conte como funciona hoje e o que mais toma tempo da sua equipe. Respondo pessoalmente.</p>
+      </div>
+      <div class="contato-acoes">
+        <a class="btn btn-verde" href="https://wa.me/5548999314665?text=Ol%C3%A1%20Marcelo%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg class="ic"><use href="#i-whats"/></svg>WhatsApp (48) 99931-4665</a>
+        <a class="btn btn-linha" href="https://www.linkedin.com/in/marcelo-heck" target="_blank" rel="noopener"><svg class="ic"><use href="#i-in"/></svg>LinkedIn</a>
+        <a class="btn btn-linha" href="mailto:marcello.heck@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>marcello.heck@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Marcelo Heck · MH Soluções para Atendimento · CNPJ 68.796.612/0001-76</span>
+    <span>Florianópolis, SC</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('rolou', scrollY > 8), { passive: true });
+</script>
+</body>
+</html>
