@@ -377,16 +377,42 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       </article>
 
       <article class="proj">
-        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-painel"/></svg></span><div><h3>Painel da recepção e dashboard</h3><span class="tipo">Front-end · SPA em JavaScript puro</span></div></div>
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-painel"/></svg></span><div><h3>Painel da recepção</h3><span class="tipo">Front-end · SPA em JavaScript puro</span></div></div>
         <p>Tela única usada pela equipe da clínica o dia todo: pedidos, confirmações e a conversa completa com cada paciente.</p>
         <ul>
           <li>Cards em tempo real, assumir e concluir atendimento, chat com envio pelo WhatsApp</li>
           <li>Mensagem citada clicável que leva à mensagem original</li>
           <li>Login individual por sessão (v2) e perfis de acesso</li>
-          <li>Dashboard de performance com Chart.js: picos, tempo de resposta, fila</li>
+          <li>Card de documento com abrir, imprimir e baixar arquivos do paciente</li>
         </ul>
-        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>REST / webhooks</span><span>GitHub Pages</span></div>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>REST / webhooks</span><span>GitHub Pages</span></div>
         <div class="links"><a href="https://github.com/marcelloheck-arch/painel-cardiocenter" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-grafico"/></svg></span><div><h3>Dashboard de performance</h3><span class="tipo">Front-end + SQL · Chart.js</span></div></div>
+        <p>Visão de gestão do atendimento, alimentada por consultas SQL no banco do agente através de um webhook do n8n.</p>
+        <ul>
+          <li>Perguntas respondidas sem intervenção humana e tempo de trabalho poupado</li>
+          <li>Tempo até a recepção assumir (SLA) e fila de espera em tempo real</li>
+          <li>Horários de pico, tipos de pedido e ranking de convênios</li>
+          <li>Filtro por período e acesso por código</li>
+        </ul>
+        <div class="tags"><span>Chart.js</span><span>JavaScript</span><span>PostgreSQL</span><span>SQL</span><span>n8n</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch/painel-cardiocenter/blob/master/dashboard.html" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Código</a><a href="#case">Ver imagem no case <svg class="ic"><use href="#i-seta"/></svg></a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-engrenagem"/></svg></span><div><h3>Painéis de teste e homologação</h3><span class="tipo">Ferramentas internas · ambiente separado</span></div></div>
+        <p>Cada mudança passa por um ambiente de teste antes de chegar à clínica, com número de WhatsApp e telas próprias.</p>
+        <ul>
+          <li>Painel de Testes: acompanha as conversas do número de teste, com acesso por token</li>
+          <li>Teste de arquivos: valida o envio e o recebimento de PDF, foto e áudio pelo painel</li>
+          <li>Painel v2 com login individual, publicado em paralelo antes da virada</li>
+          <li>Workflow de testes espelhado do de produção, gerado por script</li>
+        </ul>
+        <div class="tags"><span>JavaScript</span><span>n8n</span><span>Uazapi</span><span>Testes</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch/paineltestesmeunumero" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Painel de Testes</a><a href="https://github.com/marcelloheck-arch/painel-cardiocenter/tree/master/teste-arquivos" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Teste de arquivos</a><a href="https://github.com/marcelloheck-arch/painel-cardiocenter/tree/master/v2" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Painel v2</a></div>
       </article>
 
       <article class="proj">
@@ -434,6 +460,19 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         </ul>
         <div class="tags"><span>DNS / GitHub Pages</span><span>OAuth Google</span><span>Playwright</span><span>Node.js</span></div>
         <div class="links"><a href="https://github.com/marcelloheck-arch/cardiocenter-site" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório do domínio</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-codigo"/></svg></span><div><h3>Automações em Python (2025)</h3><span class="tipo">Projetos anteriores · ferramentas de produtividade</span></div></div>
+        <p>Onde comecei: scripts e aplicações para tirar trabalho manual de rotinas administrativas e financeiras.</p>
+        <ul>
+          <li>Conciliador de extratos: compara extratos bancários e destaca divergências</li>
+          <li>Junta PDF: une vários arquivos PDF em um só documento</li>
+          <li>Calculadora de preços para empresas do Simples Nacional</li>
+          <li>Jogo de perguntas e respostas para memorização</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>Excel / BI</span><span>PDF</span><span>Power Automate</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Perfil no GitHub</a></div>
       </article>
 
     </div>
