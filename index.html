@@ -356,7 +356,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <div class="wrap">
     <div class="rotulo">Projetos</div>
     <h2>O que eu construí, do back-end à tela.</h2>
-    <p class="sub">Tudo abaixo foi projetado, desenvolvido e é mantido por mim. Os códigos de front-end estão no GitHub; a parte de back-end (workflows, banco e integrações) fica em servidor, por conter dados e credenciais de clientes, e está descrita aqui.</p>
+    <p class="sub">Tudo abaixo foi projetado, desenvolvido e é mantido por mim. Os repositórios públicos estão linkados em cada card. O back-end da clínica (workflows, banco e integrações) e os repositórios privados ficam fora do ar, por conterem dados e credenciais de clientes, e posso apresentar o código numa conversa.</p>
     <div class="projetos">
 
       <article class="proj destaque">
@@ -426,6 +426,33 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         </ul>
         <div class="tags"><span>JavaScript</span><span>PWA</span><span>n8n</span><span>PostgreSQL</span><span>Autenticação</span></div>
         <div class="links"><a href="https://marcelloheck-arch.github.io/portal-parceiros-mh/" target="_blank" rel="noopener">Abrir (acesso por convite) <svg class="ic"><use href="#i-seta"/></svg></a><a href="https://github.com/marcelloheck-arch/portal-parceiros-mh" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-whats"/></svg></span><div><h3>Bot de WhatsApp multiempresa</h3><span class="tipo">Back-end · Node.js + TypeScript · 2025</span></div></div>
+        <p>Bot de atendimento criado para a SJPREV (São José Previdência) e depois refatorado para atender várias empresas e órgãos públicos com o mesmo código.</p>
+        <ul>
+          <li>Multi-tenant por configuração: cada empresa tem um JSON com mensagens, menus, documentos exigidos, e-mails de destino e API</li>
+          <li>Arquitetura em camadas (controllers, services, models, utils) com injeção de dependência e máquina de estados por sessão</li>
+          <li>Consulta de processos por CPF via API externa e agendamento com protocolo gerado</li>
+          <li>Validação de CPF e telefone, rate limiting, criptografia de dados sensíveis, logs com Winston e aviso por e-mail à equipe</li>
+          <li>Documentação de implantação, autenticação do WhatsApp e escalabilidade</li>
+        </ul>
+        <div class="tags"><span>TypeScript</span><span>Node.js</span><span>Express</span><span>whatsapp-web.js</span><span>REST</span><span>Nodemailer</span><span>Jest</span></div>
+        <div class="links"><span class="priv"><svg class="ic" style="width:16px;height:16px;vertical-align:-3px"><use href="#i-cadeado"/></svg> Repositório privado, apresento o código sob pedido</span></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-site"/></svg></span><div><h3>Dorven: landing page de conversão</h3><span class="tipo">Front-end · Next.js + React + TypeScript</span></div></div>
+        <p>Landing page para clínicas com um único objetivo: gerar pedidos de demonstração pelo WhatsApp.</p>
+        <ul>
+          <li>Next.js (App Router), React 19, TypeScript e Tailwind CSS v4, pronta para a Vercel</li>
+          <li>Conteúdo separado dos componentes: todo texto fica em arquivos tipados, um por seção</li>
+          <li>Componentes reutilizáveis (Radix UI), animações com Framer Motion e mockup de chat em código</li>
+          <li>SEO por código: sitemap, robots e imagem Open Graph gerada dinamicamente</li>
+        </ul>
+        <div class="tags"><span>Next.js</span><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Vercel</span></div>
+        <div class="links"><span class="priv"><svg class="ic" style="width:16px;height:16px;vertical-align:-3px"><use href="#i-cadeado"/></svg> Repositório privado, apresento o código sob pedido</span></div>
       </article>
 
       <article class="proj">
@@ -503,12 +530,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     </div>
 
     <div class="stack-grupos" aria-label="Tecnologias">
-      <div class="grupo"><h3>Automação e back-end</h3><div class="stack"><span>n8n</span><span>JavaScript (Node.js)</span><span>Python</span><span>REST / webhooks</span></div></div>
+      <div class="grupo"><h3>Automação e back-end</h3><div class="stack"><span>n8n</span><span>Node.js</span><span>TypeScript</span><span>Express</span><span>Python</span><span>REST / webhooks</span></div></div>
       <div class="grupo"><h3>Inteligência artificial</h3><div class="stack"><span>LLMs (Gemini, GPT)</span><span>OpenRouter</span><span>Prompt engineering</span><span>Agentes com ferramentas</span></div></div>
-      <div class="grupo"><h3>Mensageria</h3><div class="stack"><span>WhatsApp Cloud API</span><span>Evolution API</span><span>Uazapi</span><span>Templates e botões</span></div></div>
+      <div class="grupo"><h3>Mensageria</h3><div class="stack"><span>WhatsApp Cloud API</span><span>Evolution API</span><span>Uazapi</span><span>whatsapp-web.js</span><span>Templates e botões</span></div></div>
       <div class="grupo"><h3>Dados</h3><div class="stack"><span>PostgreSQL</span><span>SQL avançado (CTE, upsert, triggers)</span><span>pgcrypto</span><span>Google Drive / planilhas</span></div></div>
-      <div class="grupo"><h3>Front-end</h3><div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>PWA</span><span>Web Speech API</span></div></div>
-      <div class="grupo"><h3>Ferramentas</h3><div class="stack"><span>Git e GitHub</span><span>GitHub Pages</span><span>Playwright</span><span>OAuth 2.0</span><span>Cloud / VPS</span></div></div>
+      <div class="grupo"><h3>Front-end</h3><div class="stack"><span>React</span><span>Next.js</span><span>Tailwind CSS</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>PWA</span><span>Web Speech API</span></div></div>
+      <div class="grupo"><h3>Ferramentas</h3><div class="stack"><span>Git e GitHub</span><span>GitHub Pages</span><span>Vercel</span><span>Jest</span><span>Playwright</span><span>OAuth 2.0</span><span>Cloud / VPS</span></div></div>
     </div>
     <p class="tec-nota">Quer ver algum trecho de código ou conversar sobre a arquitetura? Posso apresentar em uma chamada, sem expor dados de clientes.</p>
   </div>
