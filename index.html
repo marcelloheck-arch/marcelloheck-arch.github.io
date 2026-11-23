@@ -356,7 +356,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <div class="wrap">
     <div class="rotulo">Projetos</div>
     <h2>O que eu construí, do back-end à tela.</h2>
-    <p class="sub">Tudo abaixo foi projetado, desenvolvido e é mantido por mim. Os códigos de front-end estão no GitHub; a parte de back-end (workflows, banco e integrações) fica em servidor, por conter dados e credenciais de clientes, e está descrita aqui.</p>
+    <p class="sub">Tudo abaixo foi projetado, desenvolvido e é mantido por mim. Os repositórios públicos estão linkados em cada card. O back-end da clínica (workflows, banco e integrações) e os repositórios privados ficam fora do ar, por conterem dados e credenciais de clientes, e posso apresentar o código numa conversa.</p>
     <div class="projetos">
 
       <article class="proj destaque">
@@ -377,16 +377,42 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       </article>
 
       <article class="proj">
-        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-painel"/></svg></span><div><h3>Painel da recepção e dashboard</h3><span class="tipo">Front-end · SPA em JavaScript puro</span></div></div>
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-painel"/></svg></span><div><h3>Painel da recepção</h3><span class="tipo">Front-end · SPA em JavaScript puro</span></div></div>
         <p>Tela única usada pela equipe da clínica o dia todo: pedidos, confirmações e a conversa completa com cada paciente.</p>
         <ul>
           <li>Cards em tempo real, assumir e concluir atendimento, chat com envio pelo WhatsApp</li>
           <li>Mensagem citada clicável que leva à mensagem original</li>
           <li>Login individual por sessão (v2) e perfis de acesso</li>
-          <li>Dashboard de performance com Chart.js: picos, tempo de resposta, fila</li>
+          <li>Card de documento com abrir, imprimir e baixar arquivos do paciente</li>
         </ul>
-        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>REST / webhooks</span><span>GitHub Pages</span></div>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>REST / webhooks</span><span>GitHub Pages</span></div>
         <div class="links"><a href="https://github.com/marcelloheck-arch/painel-cardiocenter" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-grafico"/></svg></span><div><h3>Dashboard de performance</h3><span class="tipo">Front-end + SQL · Chart.js</span></div></div>
+        <p>Visão de gestão do atendimento, alimentada por consultas SQL no banco do agente através de um webhook do n8n.</p>
+        <ul>
+          <li>Perguntas respondidas sem intervenção humana e tempo de trabalho poupado</li>
+          <li>Tempo até a recepção assumir (SLA) e fila de espera em tempo real</li>
+          <li>Horários de pico, tipos de pedido e ranking de convênios</li>
+          <li>Filtro por período e acesso por código</li>
+        </ul>
+        <div class="tags"><span>Chart.js</span><span>JavaScript</span><span>PostgreSQL</span><span>SQL</span><span>n8n</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch/painel-cardiocenter/blob/master/dashboard.html" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Código</a><a href="#case">Ver imagem no case <svg class="ic"><use href="#i-seta"/></svg></a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-engrenagem"/></svg></span><div><h3>Painéis de teste e homologação</h3><span class="tipo">Ferramentas internas · ambiente separado</span></div></div>
+        <p>Cada mudança passa por um ambiente de teste antes de chegar à clínica, com número de WhatsApp e telas próprias.</p>
+        <ul>
+          <li>Painel de Testes: acompanha as conversas do número de teste, com acesso por token</li>
+          <li>Teste de arquivos: valida o envio e o recebimento de PDF, foto e áudio pelo painel</li>
+          <li>Painel v2 com login individual, publicado em paralelo antes da virada</li>
+          <li>Workflow de testes espelhado do de produção, gerado por script</li>
+        </ul>
+        <div class="tags"><span>JavaScript</span><span>n8n</span><span>Uazapi</span><span>Testes</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch/paineltestesmeunumero" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Painel de Testes</a><a href="https://github.com/marcelloheck-arch/painel-cardiocenter/tree/master/teste-arquivos" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Teste de arquivos</a><a href="https://github.com/marcelloheck-arch/painel-cardiocenter/tree/master/v2" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Painel v2</a></div>
       </article>
 
       <article class="proj">
@@ -400,6 +426,33 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         </ul>
         <div class="tags"><span>JavaScript</span><span>PWA</span><span>n8n</span><span>PostgreSQL</span><span>Autenticação</span></div>
         <div class="links"><a href="https://marcelloheck-arch.github.io/portal-parceiros-mh/" target="_blank" rel="noopener">Abrir (acesso por convite) <svg class="ic"><use href="#i-seta"/></svg></a><a href="https://github.com/marcelloheck-arch/portal-parceiros-mh" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-whats"/></svg></span><div><h3>Bot de WhatsApp multiempresa</h3><span class="tipo">Back-end · Node.js + TypeScript · 2025</span></div></div>
+        <p>Bot de atendimento criado para a SJPREV (São José Previdência) e depois refatorado para atender várias empresas e órgãos públicos com o mesmo código.</p>
+        <ul>
+          <li>Multi-tenant por configuração: cada empresa tem um JSON com mensagens, menus, documentos exigidos, e-mails de destino e API</li>
+          <li>Arquitetura em camadas (controllers, services, models, utils) com injeção de dependência e máquina de estados por sessão</li>
+          <li>Consulta de processos por CPF via API externa e agendamento com protocolo gerado</li>
+          <li>Validação de CPF e telefone, rate limiting, criptografia de dados sensíveis, logs com Winston e aviso por e-mail à equipe</li>
+          <li>Documentação de implantação, autenticação do WhatsApp e escalabilidade</li>
+        </ul>
+        <div class="tags"><span>TypeScript</span><span>Node.js</span><span>Express</span><span>whatsapp-web.js</span><span>REST</span><span>Nodemailer</span><span>Jest</span></div>
+        <div class="links"><span class="priv"><svg class="ic" style="width:16px;height:16px;vertical-align:-3px"><use href="#i-cadeado"/></svg> Repositório privado, apresento o código sob pedido</span></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-site"/></svg></span><div><h3>Dorven: landing page de conversão</h3><span class="tipo">Front-end · Next.js + React + TypeScript</span></div></div>
+        <p>Landing page para clínicas com um único objetivo: gerar pedidos de demonstração pelo WhatsApp.</p>
+        <ul>
+          <li>Next.js (App Router), React 19, TypeScript e Tailwind CSS v4, pronta para a Vercel</li>
+          <li>Conteúdo separado dos componentes: todo texto fica em arquivos tipados, um por seção</li>
+          <li>Componentes reutilizáveis (Radix UI), animações com Framer Motion e mockup de chat em código</li>
+          <li>SEO por código: sitemap, robots e imagem Open Graph gerada dinamicamente</li>
+        </ul>
+        <div class="tags"><span>Next.js</span><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Vercel</span></div>
+        <div class="links"><span class="priv"><svg class="ic" style="width:16px;height:16px;vertical-align:-3px"><use href="#i-cadeado"/></svg> Repositório privado, apresento o código sob pedido</span></div>
       </article>
 
       <article class="proj">
@@ -436,6 +489,19 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <div class="links"><a href="https://github.com/marcelloheck-arch/cardiocenter-site" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório do domínio</a></div>
       </article>
 
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-codigo"/></svg></span><div><h3>Automações em Python (2025)</h3><span class="tipo">Projetos anteriores · ferramentas de produtividade</span></div></div>
+        <p>Onde comecei: scripts e aplicações para tirar trabalho manual de rotinas administrativas e financeiras.</p>
+        <ul>
+          <li>Conciliador de extratos: compara extratos bancários e destaca divergências</li>
+          <li>Junta PDF: une vários arquivos PDF em um só documento</li>
+          <li>Calculadora de preços para empresas do Simples Nacional</li>
+          <li>Jogo de perguntas e respostas para memorização</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>Excel / BI</span><span>PDF</span><span>Power Automate</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Perfil no GitHub</a></div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -464,12 +530,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     </div>
 
     <div class="stack-grupos" aria-label="Tecnologias">
-      <div class="grupo"><h3>Automação e back-end</h3><div class="stack"><span>n8n</span><span>JavaScript (Node.js)</span><span>Python</span><span>REST / webhooks</span></div></div>
+      <div class="grupo"><h3>Automação e back-end</h3><div class="stack"><span>n8n</span><span>Node.js</span><span>TypeScript</span><span>Express</span><span>Python</span><span>REST / webhooks</span></div></div>
       <div class="grupo"><h3>Inteligência artificial</h3><div class="stack"><span>LLMs (Gemini, GPT)</span><span>OpenRouter</span><span>Prompt engineering</span><span>Agentes com ferramentas</span></div></div>
-      <div class="grupo"><h3>Mensageria</h3><div class="stack"><span>WhatsApp Cloud API</span><span>Evolution API</span><span>Uazapi</span><span>Templates e botões</span></div></div>
+      <div class="grupo"><h3>Mensageria</h3><div class="stack"><span>WhatsApp Cloud API</span><span>Evolution API</span><span>Uazapi</span><span>whatsapp-web.js</span><span>Templates e botões</span></div></div>
       <div class="grupo"><h3>Dados</h3><div class="stack"><span>PostgreSQL</span><span>SQL avançado (CTE, upsert, triggers)</span><span>pgcrypto</span><span>Google Drive / planilhas</span></div></div>
-      <div class="grupo"><h3>Front-end</h3><div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>PWA</span><span>Web Speech API</span></div></div>
-      <div class="grupo"><h3>Ferramentas</h3><div class="stack"><span>Git e GitHub</span><span>GitHub Pages</span><span>Playwright</span><span>OAuth 2.0</span><span>Cloud / VPS</span></div></div>
+      <div class="grupo"><h3>Front-end</h3><div class="stack"><span>React</span><span>Next.js</span><span>Tailwind CSS</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>PWA</span><span>Web Speech API</span></div></div>
+      <div class="grupo"><h3>Ferramentas</h3><div class="stack"><span>Git e GitHub</span><span>GitHub Pages</span><span>Vercel</span><span>Jest</span><span>Playwright</span><span>OAuth 2.0</span><span>Cloud / VPS</span></div></div>
     </div>
     <p class="tec-nota">Quer ver algum trecho de código ou conversar sobre a arquitetura? Posso apresentar em uma chamada, sem expor dados de clientes.</p>
   </div>
