@@ -149,6 +149,50 @@ h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -.8
 footer { padding: 32px 0 40px; font-size: 13px; color: var(--suave); }
 footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
+
+/* PROJETOS */
+.projetos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 32px; }
+.proj { background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 24px; box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 10px; }
+.proj.destaque { grid-column: 1 / -1; border-left: 4px solid var(--verde); }
+.proj-topo { display: flex; align-items: center; gap: 12px; }
+.proj-topo .ico { width: 42px; height: 42px; border-radius: 12px; background: var(--tinta); color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+.proj h3 { font-size: 17px; font-weight: 700; color: var(--tinta); line-height: 1.25; }
+.proj .tipo { font-size: 12.5px; color: var(--suave); font-weight: 600; }
+.proj > p { font-size: 14.5px; color: var(--suave); }
+.proj ul { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--texto); }
+.proj li { padding-left: 18px; position: relative; }
+.proj li::before { content: ''; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--verde); }
+.proj.destaque ul { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.tags span { font-size: 12px; font-weight: 600; color: var(--verde-escuro); background: var(--verde-claro); border-radius: 99px; padding: 3px 10px; }
+.links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; padding-top: 6px; }
+.links a { font-size: 14px; font-weight: 700; color: var(--verde); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.links a:hover { color: var(--verde-escuro); }
+.links .priv { font-size: 13px; color: var(--suave); font-weight: 600; }
+
+/* TÉCNICO */
+.tecnico { background: var(--tinta); color: #fff; }
+.tecnico h2, .tecnico h3 { color: #fff; }
+.tecnico .sub { color: rgba(255,255,255,.7); }
+.tecnico .rotulo { color: #5FD3A2; }
+.fluxo { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 34px; position: relative; }
+.etapa { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: var(--raio); padding: 16px; position: relative; }
+.etapa:not(:last-child)::after { content: '→'; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); color: #5FD3A2; font-weight: 800; font-size: 15px; z-index: 1; }
+.etapa b { display: block; font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: #5FD3A2; margin-bottom: 8px; }
+.etapa h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.etapa ul { list-style: none; font-size: 13px; color: rgba(255,255,255,.75); display: flex; flex-direction: column; gap: 4px; }
+.decisoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+.dec { border-top: 2px solid rgba(95,211,162,.5); padding-top: 14px; }
+.dec h3 { font-size: 15.5px; font-weight: 700; }
+.dec p { font-size: 13.8px; color: rgba(255,255,255,.72); margin-top: 6px; }
+.stack-grupos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+.grupo { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: var(--raio); padding: 16px 18px; }
+.grupo h3 { font-size: 13px; letter-spacing: .8px; text-transform: uppercase; color: #5FD3A2; font-weight: 700; margin-bottom: 10px; }
+.grupo .stack { margin-top: 0; gap: 6px; }
+.grupo .stack span { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); color: #fff; font-size: 12.5px; padding: 5px 11px; }
+.tec-nota { margin-top: 26px; font-size: 13.5px; color: rgba(255,255,255,.6); }
+.hero-tec { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; color: var(--azul); text-decoration: none; margin-top: 10px; }
+
 /* RESPONSIVO */
 @media (max-width: 960px) {
   .hero .wrap, .case, .contato { grid-template-columns: 1fr; }
@@ -156,13 +200,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .grade-num { grid-template-columns: repeat(2, 1fr); }
   .servicos { grid-template-columns: 1fr 1fr; }
   .passos { grid-template-columns: 1fr 1fr; }
+  .fluxo { grid-template-columns: 1fr 1fr; }
+  .etapa:not(:last-child)::after { display: none; }
+  .decisoes, .stack-grupos { grid-template-columns: 1fr 1fr; }
   .nav-links a:not(.btn) { display: none; }
 }
 @media (max-width: 620px) {
   .wrap { padding: 0 16px; }
   .hero { padding: 36px 0 24px; }
   section { padding: 52px 0; }
-  .demos, .servicos, .passos { grid-template-columns: 1fr; }
+  .demos, .servicos, .passos, .projetos, .fluxo, .decisoes, .stack-grupos, .proj.destaque ul { grid-template-columns: 1fr; }
   .n b { font-size: 30px; }
   .contato { padding: 30px 22px; border-radius: 18px; }
   .hero-acoes .btn { flex: 1; justify-content: center; }
@@ -182,6 +229,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <symbol id="i-engrenagem" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.2 6.2l2.1 2.1M17.7 15.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 17.8l2.1-2.1M17.7 8.3l2.1-2.1"/></symbol>
   <symbol id="i-site" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></symbol>
   <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+  <symbol id="i-codigo" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></symbol>
+  <symbol id="i-git" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 7v10M18 11c0 4-6 3-12 6"/></symbol>
+  <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-pessoas" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 5.5a3 3 0 0 1 0 5.5M17.5 14a5 5 0 0 1 3 5"/></symbol>
   <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6l8.5 7 8.5-7"/></symbol>
@@ -194,6 +245,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="nav-links">
       <a href="#case">Case</a>
       <a href="#demos">Demonstrações</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#tecnico">Parte técnica</a>
       <a href="#servicos">Serviços</a>
       <a href="#contato">Contato</a>
       <a class="btn btn-verde" href="https://wa.me/5548999314665?text=Ol%C3%A1%20Marcelo%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg class="ic"><use href="#i-whats"/></svg>Conversar</a>
@@ -211,7 +264,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <a class="btn btn-verde" href="https://wa.me/5548999314665?text=Ol%C3%A1%20Marcelo%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg class="ic"><use href="#i-whats"/></svg>Falar pelo WhatsApp</a>
         <a class="btn btn-linha" href="#case">Ver o case real <svg class="ic"><use href="#i-seta"/></svg></a>
       </div>
-      <p class="hero-nota">Atendo clínicas, consultórios e empresas de serviços em todo o Brasil, de forma remota.</p>
+      <p class="hero-nota">Atendo clínicas, consultórios e empresas de serviços em todo o Brasil, de forma remota. Disponível também para projetos e vagas PJ.</p>
+      <a class="hero-tec" href="#tecnico"><svg class="ic"><use href="#i-codigo"/></svg>Empresa ou recrutador? Veja a arquitetura e a stack</a>
     </div>
 
     <div class="celular" aria-label="Exemplo de conversa com o agente">
@@ -298,6 +352,129 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   </div>
 </section>
 
+<section id="projetos" style="padding-top:0">
+  <div class="wrap">
+    <div class="rotulo">Projetos</div>
+    <h2>O que eu construí, do back-end à tela.</h2>
+    <p class="sub">Tudo abaixo foi projetado, desenvolvido e é mantido por mim. Os códigos de front-end estão no GitHub; a parte de back-end (workflows, banco e integrações) fica em servidor, por conter dados e credenciais de clientes, e está descrita aqui.</p>
+    <div class="projetos">
+
+      <article class="proj destaque">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-robo"/></svg></span><div><h3>Plataforma de atendimento da Clínica Cardiocenter</h3><span class="tipo">Back-end · em produção desde jul/2026 · 2.601 pacientes atendidos</span></div></div>
+        <p>Agente de IA no WhatsApp, lembretes de consulta pela API oficial da Meta, painel da recepção e dashboard, integrados num só sistema. É o núcleo do case acima.</p>
+        <ul>
+          <li>Workflow principal no n8n com mais de 100 nós: entrada, normalização, agrupamento de mensagens, transbordo humano, IA e saída</li>
+          <li>Arquitetura híbrida: máquina de estados em código conduz as etapas críticas do pré-agendamento e a IA cuida da conversa livre</li>
+          <li>LLM via OpenRouter com modelo reserva automático e filtro de saída contra vazamento de dados internos</li>
+          <li>Validação do pedido contra a agenda real de cada médico antes de chegar à recepção</li>
+          <li>Transbordo humano: o agente se cala quando a recepção assume, responde pelo painel ou o paciente pede atendente</li>
+          <li>Lembretes: planilha da agenda no Google Drive → fila no PostgreSQL sem duplicidade → template da Meta com botões → respostas tratadas em 19 cenários</li>
+          <li>Arquivos (PDF, foto, áudio) e mensagens citadas levados até o painel</li>
+          <li>Migração de provedor (Evolution → Uazapi) gerada por script, com testes automatizados</li>
+        </ul>
+        <div class="tags"><span>n8n</span><span>JavaScript</span><span>PostgreSQL</span><span>SQL</span><span>LLM / OpenRouter</span><span>WhatsApp Cloud API</span><span>Evolution API</span><span>Uazapi</span><span>Google Drive API</span><span>Python</span></div>
+        <div class="links"><span class="priv"><svg class="ic" style="width:16px;height:16px;vertical-align:-3px"><use href="#i-cadeado"/></svg> Código em servidor privado (dados de clientes)</span><a href="#tecnico">Ver a arquitetura <svg class="ic"><use href="#i-seta"/></svg></a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-painel"/></svg></span><div><h3>Painel da recepção e dashboard</h3><span class="tipo">Front-end · SPA em JavaScript puro</span></div></div>
+        <p>Tela única usada pela equipe da clínica o dia todo: pedidos, confirmações e a conversa completa com cada paciente.</p>
+        <ul>
+          <li>Cards em tempo real, assumir e concluir atendimento, chat com envio pelo WhatsApp</li>
+          <li>Mensagem citada clicável que leva à mensagem original</li>
+          <li>Login individual por sessão (v2) e perfis de acesso</li>
+          <li>Dashboard de performance com Chart.js: picos, tempo de resposta, fila</li>
+        </ul>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>REST / webhooks</span><span>GitHub Pages</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch/painel-cardiocenter" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-pessoas"/></svg></span><div><h3>Portal de Parceiros MH</h3><span class="tipo">Full stack · PWA instalável</span></div></div>
+        <p>Sistema do meu programa de indicações: o parceiro indica empresas, acompanha cada etapa e vê o bônus a receber.</p>
+        <ul>
+          <li>Acesso por convite, senha temporária com troca obrigatória e aceite de termos</li>
+          <li>Painel do parceiro e área administrativa, com planos de comissão</li>
+          <li>API própria em n8n + PostgreSQL; a página só guarda a interface</li>
+          <li>Instalável no celular (manifest e ícones)</li>
+        </ul>
+        <div class="tags"><span>JavaScript</span><span>PWA</span><span>n8n</span><span>PostgreSQL</span><span>Autenticação</span></div>
+        <div class="links"><a href="https://marcelloheck-arch.github.io/portal-parceiros-mh/" target="_blank" rel="noopener">Abrir (acesso por convite) <svg class="ic"><use href="#i-seta"/></svg></a><a href="https://github.com/marcelloheck-arch/portal-parceiros-mh" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-mic"/></svg></span><div><h3>Demo: agente que responde por voz</h3><span class="tipo">Front-end · Web Speech API</span></div></div>
+        <p>O usuário fala ou digita e o agente responde sempre em áudio, direto no navegador, sem instalar nada.</p>
+        <ul>
+          <li>Reconhecimento de fala (SpeechRecognition) e síntese de voz (speechSynthesis)</li>
+          <li>Fluxo de atendimento por menus configuráveis</li>
+        </ul>
+        <div class="tags"><span>JavaScript</span><span>Web Speech API</span><span>HTML</span><span>CSS</span></div>
+        <div class="links"><a href="https://marcelloheck-arch.github.io/AtendePorvoz/" target="_blank" rel="noopener">Abrir demo <svg class="ic"><use href="#i-seta"/></svg></a><a href="https://github.com/marcelloheck-arch/AtendePorvoz" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-robo"/></svg></span><div><h3>Demo: agente de atendimento por texto</h3><span class="tipo">Front-end · simulação de WhatsApp</span></div></div>
+        <p>Demonstração para um negócio fictício que reproduz o atendimento de um agente no WhatsApp, usada em apresentações comerciais.</p>
+        <ul>
+          <li>Interface de chat responsiva, pensada para celular</li>
+          <li>Menus e respostas configuráveis por objeto de configuração</li>
+        </ul>
+        <div class="tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+        <div class="links"><a href="https://marcelloheck-arch.github.io/SeuNegocio/" target="_blank" rel="noopener">Abrir demo <svg class="ic"><use href="#i-seta"/></svg></a><a href="https://github.com/marcelloheck-arch/SeuNegocio" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório</a></div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-topo"><span class="ico"><svg class="ic"><use href="#i-site"/></svg></span><div><h3>Domínio, páginas legais e vídeo de apresentação</h3><span class="tipo">Infra e conteúdo</span></div></div>
+        <p>Peças de apoio para colocar os sistemas em produção e apresentá-los.</p>
+        <ul>
+          <li>Domínio próprio e políticas de privacidade e termos para publicar o app OAuth do Google e verificar o negócio na Meta</li>
+          <li>Vídeo de apresentação do agente gerado por código (HTML animado renderizado com Playwright)</li>
+          <li>Este portfólio, com prévia de link (Open Graph) e layout responsivo</li>
+        </ul>
+        <div class="tags"><span>DNS / GitHub Pages</span><span>OAuth Google</span><span>Playwright</span><span>Node.js</span></div>
+        <div class="links"><a href="https://github.com/marcelloheck-arch/cardiocenter-site" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>Repositório do domínio</a></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="tecnico" class="tecnico">
+  <div class="wrap">
+    <div class="rotulo">Parte técnica</div>
+    <h2>Por trás das telas: como o sistema da clínica funciona.</h2>
+    <p class="sub">O caminho de uma mensagem do paciente, do WhatsApp até a equipe. Cada camada foi pensada para que a IA ajude sem nunca ficar sozinha nas decisões que importam.</p>
+
+    <div class="fluxo">
+      <div class="etapa"><b>1 · Canais</b><h3>WhatsApp</h3><ul><li>Evolution API e Uazapi (número de atendimento)</li><li>API oficial da Meta via BSP (lembretes)</li><li>Webhooks de entrada</li></ul></div>
+      <div class="etapa"><b>2 · Orquestração</b><h3>n8n</h3><ul><li>Normaliza texto, mídia, citação e número oculto</li><li>Agrupa mensagens seguidas</li><li>Checa transbordo humano e horário</li></ul></div>
+      <div class="etapa"><b>3 · Decisão</b><h3>Estado + IA</h3><ul><li>Máquina de estados em código</li><li>LLM com prompt de ~20 mil tokens e modelo reserva</li><li>Filtro e parser da resposta</li></ul></div>
+      <div class="etapa"><b>4 · Dados</b><h3>PostgreSQL</h3><ul><li>Pedidos, histórico, estado da conversa</li><li>Fila de lembretes idempotente</li><li>Usuários, sessões e auditoria</li></ul></div>
+      <div class="etapa"><b>5 · Interfaces</b><h3>Painel e dashboard</h3><ul><li>SPA no GitHub Pages</li><li>API por webhooks com sessão</li><li>Chat e arquivos em tempo real</li></ul></div>
+    </div>
+
+    <div class="decisoes">
+      <div class="dec"><h3>IA com trilhos</h3><p>Nome, data de nascimento, CPF, listas de médicos e fechamento do pedido são tratados por código determinístico. A IA conduz a conversa livre. Isso eliminou repetições e invenções que só o modelo não resolvia.</p></div>
+      <div class="dec"><h3>Transbordo humano confiável</h3><p>O agente fica em silêncio quando a recepção assume, responde pelo painel ou quando o paciente pede uma pessoa. Nesse caso, abre um card urgente e encerra o fluxo.</p></div>
+      <div class="dec"><h3>Autenticação de verdade</h3><p>Senhas com bcrypt (pgcrypto), token de sessão opaco de 32 bytes guardado só como hash SHA-256, expiração, bloqueio após 5 tentativas, perfis e trilha de auditoria.</p></div>
+      <div class="dec"><h3>Workflows como código</h3><p>Scripts em Python leem o workflow de produção e geram variantes (por exemplo, a versão para outro provedor de WhatsApp), com checagem automática de ligações e sintaxe.</p></div>
+      <div class="dec"><h3>Testes antes de produção</h3><p>Código dos nós executado em Node.js com dados simulados, centenas de combinações de regressão por mudança, SQL testado em Postgres local e número de WhatsApp separado para testes.</p></div>
+      <div class="dec"><h3>Operação e documentação</h3><p>Relatórios de incidente, guias de implantação e de rollback para cada mudança, e decisões registradas. Pronto para multi-cliente (<code style="font-size:12px">clinica_id</code>) e com cuidado de LGPD.</p></div>
+    </div>
+
+    <div class="stack-grupos" aria-label="Tecnologias">
+      <div class="grupo"><h3>Automação e back-end</h3><div class="stack"><span>n8n</span><span>JavaScript (Node.js)</span><span>Python</span><span>REST / webhooks</span></div></div>
+      <div class="grupo"><h3>Inteligência artificial</h3><div class="stack"><span>LLMs (Gemini, GPT)</span><span>OpenRouter</span><span>Prompt engineering</span><span>Agentes com ferramentas</span></div></div>
+      <div class="grupo"><h3>Mensageria</h3><div class="stack"><span>WhatsApp Cloud API</span><span>Evolution API</span><span>Uazapi</span><span>Templates e botões</span></div></div>
+      <div class="grupo"><h3>Dados</h3><div class="stack"><span>PostgreSQL</span><span>SQL avançado (CTE, upsert, triggers)</span><span>pgcrypto</span><span>Google Drive / planilhas</span></div></div>
+      <div class="grupo"><h3>Front-end</h3><div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>PWA</span><span>Web Speech API</span></div></div>
+      <div class="grupo"><h3>Ferramentas</h3><div class="stack"><span>Git e GitHub</span><span>GitHub Pages</span><span>Playwright</span><span>OAuth 2.0</span><span>Cloud / VPS</span></div></div>
+    </div>
+    <p class="tec-nota">Quer ver algum trecho de código ou conversar sobre a arquitetura? Posso apresentar em uma chamada, sem expor dados de clientes.</p>
+  </div>
+</section>
+
 <section id="servicos" style="background:var(--branco);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda)">
   <div class="wrap">
     <div class="rotulo">O que eu faço</div>
@@ -323,9 +500,6 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <div class="passo"><h3>Testes e implantação</h3><p>Testo tudo num número separado antes de ligar no atendimento real.</p></div>
       <div class="passo"><h3>Acompanhamento</h3><p>Ajusto o sistema conforme a rotina do seu negócio muda. Suporte contínuo.</p></div>
     </div>
-    <div class="stack" aria-label="Tecnologias">
-      <span>n8n</span><span>WhatsApp API oficial (Meta)</span><span>Uazapi · Evolution API</span><span>OpenAI · Gemini</span><span>PostgreSQL</span><span>JavaScript</span><span>Python</span><span>Google Drive e Sheets</span><span>HTML e CSS</span><span>GitHub Pages</span>
-    </div>
   </div>
 </section>
 
@@ -339,6 +513,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <div class="contato-acoes">
         <a class="btn btn-verde" href="https://wa.me/5548999314665?text=Ol%C3%A1%20Marcelo%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener"><svg class="ic"><use href="#i-whats"/></svg>WhatsApp (48) 99931-4665</a>
         <a class="btn btn-linha" href="https://www.linkedin.com/in/marcelo-heck" target="_blank" rel="noopener"><svg class="ic"><use href="#i-in"/></svg>LinkedIn</a>
+        <a class="btn btn-linha" href="https://github.com/marcelloheck-arch" target="_blank" rel="noopener"><svg class="ic"><use href="#i-git"/></svg>GitHub</a>
         <a class="btn btn-linha" href="mailto:marcello.heck@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>marcello.heck@gmail.com</a>
       </div>
     </div>
