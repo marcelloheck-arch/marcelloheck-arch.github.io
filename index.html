@@ -602,11 +602,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   addEventListener('scroll', () => nav.classList.toggle('rolou', scrollY > 8), { passive: true });
 </script>
 <script>
-// Link direto para um projeto (ex.: #dorven): reposiciona depois que fontes e imagens carregam,
+// Link direto para um projeto (ex.: ?p=dorven ou #dorven): reposiciona depois que fontes e imagens carregam,
 // porque o layout muda de altura e o navegador para no lugar errado.
 (function(){
-  var id = decodeURIComponent(location.hash.slice(1));
-  if (!id) return;
+  // Aceita #dorven e ?p=dorven. O LinkedIn corta o "#" dos links, então nos perfis usamos ?p=.
+  var id = decodeURIComponent(location.hash.slice(1)) || new URLSearchParams(location.search).get('p') || '';
+  if (!id || !document.getElementById(id)) return;
   function ir(){ var el = document.getElementById(id); if (el) el.scrollIntoView({block:'start'}); }
   window.addEventListener('load', function(){ ir(); setTimeout(ir, 400); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(ir);
